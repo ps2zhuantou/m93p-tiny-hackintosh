@@ -1,29 +1,32 @@
 # m93p-tiny-hackintosh
 a Repository containing files for turning a Lenovo M93p tiny into a shiny hackintosh
 # Introduction
-Setting up Hackintoshes can be a pain and there is a lot to consider. In this Repo I want to document my journey of turning a Lenovo M93p Tiny PC into a Hackintosh running Catalina with the Opencore Bootloader.
+
+This repo is based on the awesome [m93p-tiny-hackintosh](https://github.com/lumpi2k/m93p-tiny-hackintosh) repo, and fixed 4K display issue.
 
  ## My Configuration
 
- M93p tiny PCs come in many different configurations and here's mine:
-
- - Intel i5 4570T CPU
- - Intel HD 4600 integrated GPU
- - Q87 Chipset
- - 8GB DDR3 RAM
- - some SSD I had lying around
- - Intel Wifi Card (replaced with a Broadcom BCM94352)
-
- As far as I'm aware there are M93p out there that don't have any Wifi preinstalled, which would make upgrading the antennas and Wifi card a bit more cumbersome later, though if you don't plan to use Wifi you could save some money here.
-
- Also there's quadcore configurations out there, which would give you a bit more power, so if you can get one of these, go for it. I found that the most crucial component is the integrated GPU though. My model uses the natively supported HD4600 variant. If yours uses a mobile iGPU like HD4400, prepare for some more fiddling.
+```
+Model            Lenovo ThinkCentre M93p Tiny
+Motherboard      Intel Q87 
+CPU              Intel Core i5-4570T
+Memory           16G DDR3 1600MHz (8G+8G)
+Graphics         Intel HD 4600
+Audio Realtek    ALC283
+Ethernet         Intel I217LM
+Wi-Fi            Broadcom BCM94352HMB
+Monitor          Dell U3219Q 3840x2160
+BIOS             FBKTDEAUS 06/16/2020 
+macOS            Catalina 10.15.6
+OpenCore         0.5.8
+```
 
  ## What Works
 
- - Catalina 10.15.4
+ - Catalina 10.15.6
  - iMessage
  - Airdrop
- - (almost) 4K60 through DP
+ - 4K60 through DP
  - Audio Out
  - Energy Management
  - FileVault
@@ -34,7 +37,6 @@ Setting up Hackintoshes can be a pain and there is a lot to consider. In this Re
 
  This build is still a bit away from being golden. Here are my current issues:
 
- - no 4k60
  - no fan readout
  - no sleep
  - still a bit shaky energy management (though it could be that the CPU is just busy most of the time since it clocks up and don just fine)
@@ -52,9 +54,7 @@ https://github.com/corpnewt/GenSMBIOS - GenSMBIOS is used to create a valid seri
 # Creating the Hackintosh
 
 ## Creating the USB Installer
-Assuming you're using Windows the [OpenCore Desktop Guide][3] has a very thorough manual on how to use gibMacOS to obtain a legit recovery image of MacOS. I used Catalina 10.15.4.
-
-If you follow this guide you should end up with a drive named "BOOT" with an EFI folder in it.
+Strongly recommend you go through [this video](https://www.youtube.com/watch?v=M1pnWKNaqUs). It's another working example of M93p Hackintosh but different hardware spec.
 
 ## Preparation of the EFI Folder
 First you should clone or download this repo and the tools I recommended. If you have the same system config as my Lenovo tiny PC there's only one thing you have to set in the config.plist located under EFI/OC/
@@ -107,3 +107,4 @@ After you've created the SMBIOS with GenSMBIOS put in the values as described [h
 [1]:https://dortania.github.io/OpenCore-Desktop-Guide/post-install/iservices.html
 [2]: https://dortania.github.io/OpenCore-Desktop-Guide/config.plist/haswell.html#platforminfo
 [3]: https://dortania.github.io/OpenCore-Desktop-Guide/installer-guide/winblows-install.html
+[4]: https://www.tonymacx86.com/threads/dell-optiplex-7020-4k-monitors-on-intel-4600-integrated-gpu.282589/page-16#post-2157430
