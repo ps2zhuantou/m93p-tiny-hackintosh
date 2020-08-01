@@ -41,6 +41,12 @@ OpenCore         0.5.8
  - no sleep
  - still a bit shaky energy management (though it could be that the CPU is just busy most of the time since it clocks up and don just fine)
 
+# BIOS
+
+ - Devices -> Video Setup -> Pre-Allocated memory Size = 64MB
+ - Advanced -> CPU Setup -> VT-d = Dissabled
+ - Security -> Secure Boot -> Secure Boot = Dissabled
+ - Startup: CSM = Enabled, BOot Mode = UEFI Only
 
 # Useful Links
 https://dortania.github.io/OpenCore-Desktop-Guide/ - The OpenCore Desktop Guide is the most important bit of info for this build.
@@ -54,7 +60,7 @@ https://github.com/corpnewt/GenSMBIOS - GenSMBIOS is used to create a valid seri
 # Creating the Hackintosh
 
 ## Creating the USB Installer
-Strongly recommend you go through [this video](https://www.youtube.com/watch?v=M1pnWKNaqUs). It's another working example of M93p Hackintosh but different hardware spec.
+Strongly recommend you go through [this video](https://youtu.be/3zsfkVZ2Y-E). It's another working example of M93p Hackintosh but different hardware spec.
 
 ## Preparation of the EFI Folder
 First you should clone or download this repo and the tools I recommended. If you have the same system config as my Lenovo tiny PC there's only one thing you have to set in the config.plist located under EFI/OC/
@@ -100,11 +106,8 @@ The OpenCore Desktop Guide shows this in it's chapter  [Fixing iServices][1]. **
 
 After you've created the SMBIOS with GenSMBIOS put in the values as described [here in the Desktop Guide][2].
 
-
-
-
-
-[1]:https://dortania.github.io/OpenCore-Desktop-Guide/post-install/iservices.html
-[2]: https://dortania.github.io/OpenCore-Desktop-Guide/config.plist/haswell.html#platforminfo
-[3]: https://dortania.github.io/OpenCore-Desktop-Guide/installer-guide/winblows-install.html
-[4]: https://www.tonymacx86.com/threads/dell-optiplex-7020-4k-monitors-on-intel-4600-integrated-gpu.282589/page-16#post-2157430
+# Reference Links:
+* https://dortania.github.io/OpenCore-Desktop-Guide/post-install/iservices.html
+* https://dortania.github.io/OpenCore-Desktop-Guide/config.plist/haswell.html#platforminfo
+* https://dortania.github.io/OpenCore-Desktop-Guide/installer-guide/winblows-install.html
+* https://www.tonymacx86.com/threads/dell-optiplex-7020-4k-monitors-on-intel-4600-integrated-gpu.282589/page-16#post-2157430
