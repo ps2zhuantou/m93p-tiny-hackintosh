@@ -14,7 +14,7 @@ Memory           16G DDR3 1600MHz (8G+8G)
 Graphics         Intel HD 4600
 Audio Realtek    ALC283
 Ethernet         Intel I217LM
-Wi-Fi            Broadcom BCM94352HMB
+Wi-Fi            Broadcom BCM94352HMB (Azurewave aw-ce123h)
 Monitor          Dell U3219Q 3840x2160
 BIOS             FBKTDEAUS 06/16/2020 
 macOS            Catalina 10.15.6
@@ -32,21 +32,54 @@ OpenCore         0.5.8
  - FileVault
  - App Store
  - Wifi and Bluetooth
+ - Sleep
 
  ## What Doesn't Work
 
  This build is still a bit away from being golden. Here are my current issues:
-
- - no fan readout
- - no sleep
- - still a bit shaky energy management (though it could be that the CPU is just busy most of the time since it clocks up and don just fine)
+ - Internal speaker
+ - Bluetooth sometimes does not function, it's on but not discoverable and cannot find other device as well
+ - No fan readout
+ - Energy management, I didnd't see much difference with different configurations
 
 # BIOS
 
- - Devices -> Video Setup -> Pre-Allocated memory Size = 64MB
- - Advanced -> CPU Setup -> VT-d = Dissabled
- - Security -> Secure Boot -> Secure Boot = Dissabled
+ - Devices -> Video Setup -> Pre-Allocated memory Size = 128MB
+ - Advanced -> CPU Setup -> VT-d = Disabled
+ - Security -> Secure Boot -> Secure Boot = Disabled
  - Startup: CSM = Enabled, BOot Mode = UEFI Only
+
+# HD4600 & 4K & FrameBuffer
+
+To enable 4K support on HD4600, besides device-id, below properties should be updated as well
+- framebuffer-unifiedmem : 2048MB
+- framebuffer-stolenmem : 128MB (default=32MB)
+- framebuffer-fbmem : 48MB (default=19MB)
+
+framebuffer (Original): 0300220D 00030303 00000002 00003001. In this original setting, framebuffer-stolenmem=00000002 (32MB), framebuffer-fbmem=00003001 (19MB).
+
+Common Resolution to required framebuffer memory size, required memory = 4octets x resolution.
+(4 octets because RGBA color)
+
+| Resolution  | Required fbmem  |
+|---|---|
+| 1080p  | 7.9 MB  |
+| 1440p  | 14 MB  |
+| 2160p | 31.6 MB  |
+That's why we get 1440p on a 4K monitor without any patch, and have to increase framebuffer-fbmem to 32MB for 4K.
+
+Because framebuffer-fbmem is increased to 32MB, to make sure cbmem+cursormem < stolenmem, stolenmem should be increased as well. I tried 64mb and 128mb, both works, in current build 128mb is used.
+
+## More Reading on FrameBuffer
+- [Intel Framebuffer patching using WhateverGreen](https://www.insanelymac.com/forum/topic/334899-intel-framebuffer-patching-using-whatevergreen/?do=findComment&comment=2647254)
+- [Troubleshooting 4k on HD 4600 iGPU (OpenCore), working temp patch and help requested](https://www.reddit.com/r/hackintosh/comments/h0z4yf/troubleshooting_4k_on_hd_4600_igpu_opencore/)
+
+
+# WIFI & Bluetooth
+work in progress
+
+# Audio & AppleALC
+work in progress
 
 # Useful Links
 https://dortania.github.io/OpenCore-Desktop-Guide/ - The OpenCore Desktop Guide is the most important bit of info for this build.
