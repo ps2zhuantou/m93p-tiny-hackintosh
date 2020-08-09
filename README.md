@@ -66,6 +66,7 @@ Common Resolution to required framebuffer memory size, required memory = 4octets
 | 1080p  | 7.9 MB  |
 | 1440p  | 14 MB  |
 | 2160p | 31.6 MB  |
+
 That's why we get 1440p on a 4K monitor without any patch, and have to increase framebuffer-fbmem to 32MB for 4K.
 
 Because framebuffer-fbmem is increased to 32MB, to make sure cbmem+cursormem < stolenmem, stolenmem should be increased as well. I tried 64mb and 128mb, both works, in current build 128mb is used.
@@ -74,12 +75,6 @@ Because framebuffer-fbmem is increased to 32MB, to make sure cbmem+cursormem < s
 - [Intel Framebuffer patching using WhateverGreen](https://www.insanelymac.com/forum/topic/334899-intel-framebuffer-patching-using-whatevergreen/?do=findComment&comment=2647254)
 - [Troubleshooting 4k on HD 4600 iGPU (OpenCore), working temp patch and help requested](https://www.reddit.com/r/hackintosh/comments/h0z4yf/troubleshooting_4k_on_hd_4600_igpu_opencore/)
 
-
-# WIFI & Bluetooth
-work in progress
-
-# Audio & AppleALC
-work in progress
 
 # Useful Links
 https://dortania.github.io/OpenCore-Desktop-Guide/ - The OpenCore Desktop Guide is the most important bit of info for this build.
