@@ -38,7 +38,7 @@ OpenCore         0.5.8
 
  This build is still a bit away from being golden. Here are my current issues:
  - Internal speaker
- - Bluetooth sometimes does not function, it's on but not discoverable and cannot find other device as well
+ - Airdrop will NOT work right after you search and add bluetooth device, and it will work fine after reboot
  - No fan readout
  - Energy management, I didnd't see much difference with different configurations
 
